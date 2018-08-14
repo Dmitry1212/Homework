@@ -1,17 +1,24 @@
 //console.log('hello');
 "use strict";
 
-//var sendButton = document.getElementById('send');
-//console.log(sendButton);
-
-send.addEventListener('click', checkForm());
-//document.getElementById('send').addEventListener('click', checkForm());
+function checkInput(input,pattern) {
+    if (!pattern.test(input.value)) {
+        input.style.borderColor = 'red';
+        event.preventDefault();
+    } else {
+        input.style.borderColor = 'green';
+    }
+}
 
 function checkForm() {
-    console.log('hello');
-    var inputName = document.getElementById('name');
-    // var pattern = /^\[a-zA-ZА-Яа-пр-я]+$/;
-    // console.log(pattern.test)
-    //console.log(inputName);
+    checkInput(document.getElementById('name'),/^[a-zA-ZА-Яа-пр-я]+$/);
+    checkInput(document.getElementById('phone'),/^\+7\(\d{3}\)\d{3}-\d{4}$/);
+    checkInput(document.getElementById('email'),/^[a-zA-ZА-Яа-пр-я_.-]+@[a-z]+\.[a-z]{2,3}$/);
 
+return false;
 }
+
+var sendForm = document.getElementById('contact');
+
+sendForm.addEventListener('submit', checkForm);
+
